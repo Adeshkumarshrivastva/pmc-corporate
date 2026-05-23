@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import TestBackButton from "../components/TestBackButton";
-import TestCompleteButton from "../components/TestCompleteButton";
 
 export default function HiddenLossStart() {
   const navigate = useNavigate();
@@ -48,7 +47,31 @@ export default function HiddenLossStart() {
         >
          For checking your loss
         </div>
-        <TestCompleteButton onClick={handleClick}>Check</TestCompleteButton>
+        <button
+          onClick={handleClick}
+          style={{
+            padding: "14px 32px",
+            fontSize: "16px",
+            fontWeight: "bold",
+            color: "#fff",
+            background: "linear-gradient(135deg, #1e3a8a, #2563eb)",
+            border: "none",
+            borderRadius: "12px",
+            cursor: "pointer",
+            boxShadow: "0 4px 12px rgba(30, 58, 138, 0.3)",
+            transition: "all 0.3s ease",
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = "0 6px 16px rgba(30, 58, 138, 0.4)";
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 4px 12px rgba(30, 58, 138, 0.3)";
+          }}
+        >
+          Check
+        </button>
       </div>
     </div>
   );
