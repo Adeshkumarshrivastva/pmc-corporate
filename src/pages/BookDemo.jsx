@@ -65,7 +65,7 @@ function BookDemo() {
       <div
         style={{
           maxWidth: "700px",
-          margin: "auto",
+          margin: "89px",
           background: "#fff",
           borderRadius: "24px",
           padding: "40px",

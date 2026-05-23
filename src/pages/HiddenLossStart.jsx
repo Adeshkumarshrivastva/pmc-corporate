@@ -48,7 +48,6 @@ export default function HiddenLossStart() {
         >
          For checking your loss
         </div>
-
         <TestCompleteButton onClick={handleClick}>Check</TestCompleteButton>
       </div>
     </div>

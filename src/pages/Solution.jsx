@@ -39,7 +39,7 @@ export default function Solution() {
         style={{
           position: "absolute",
           top: "140px",
-          left: "24px",
+          left: "24px", 
           zIndex: 1,
         }}
       >

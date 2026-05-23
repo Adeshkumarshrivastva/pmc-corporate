@@ -127,8 +127,8 @@ export default function Dialog() {
               style={{
                 position: "relative",
                 width: "400px",
-                height: "400px",
-                margin: "0 auto",
+                height: "450px",
+                margin: "80px",
                 animation: "pulse 2s ease-in-out infinite",
               }}
             >

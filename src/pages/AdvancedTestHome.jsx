@@ -109,7 +109,7 @@ function AdvancedTestHome() {
       <div
         style={{
           maxWidth: "850px",
-          margin: "auto",
+          margin: "89px",
           background: "#fff",
           borderRadius: "20px",
           padding: "25px",

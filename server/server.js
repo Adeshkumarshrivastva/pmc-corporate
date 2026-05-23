@@ -4,7 +4,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 3002;
 
@@ -19,9 +18,9 @@ app.use(express.json());
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.DATABASE_URL);
-    console.log('✅ MongoDB connected successfully');
+    console.log(' MongoDB connected successfully');
   } catch (error) {
-    console.error('❌ MongoDB connection error:', error);
+    console.error(' MongoDB connection error:', error);
     process.exit(1);
   }
 };
@@ -72,7 +71,7 @@ class ZohoAPI {
       const data = await response.json();
       return data.access_token;
     } catch (error) {
-      console.error('❌ Zoho access token error:', error.message);
+      console.error(' Zoho access token error:', error.message);
       throw error;
     }
   }
@@ -88,8 +87,8 @@ class ZohoAPI {
         },
         body: JSON.stringify({
           data: [{
-            Last_Name: leadData.lastName,
             First_Name: leadData.firstName,
+            Last_Name: leadData.lastName,
             Email: leadData.email,
             Phone: leadData.phone,
             Company: leadData.company,
@@ -101,14 +100,14 @@ class ZohoAPI {
 
       const data = await response.json();
       if (data.data && data.data[0] && data.data[0].code === 'SUCCESS') {
-        console.log('✅ Lead created in Zoho CRM:', data.data[0].details.id);
+        console.log(' Lead created in Zoho CRM:', data.data[0].details.id);
         return { success: true, data };
       } else {
-        console.error('❌ Zoho CRM error:', data);
+        console.error(' Zoho CRM error:', data);
         return { success: false, error: data };
       }
     } catch (error) {
-      console.error('❌ Zoho CRM error:', error.message);
+      console.error(' Zoho CRM error:', error.message);
       return { success: false, error: error.message };
     }
   }
@@ -148,7 +147,7 @@ app.post('/api/test-details', async (req, res) => {
 
     await testDetails.save();
 
-    console.log('✅ Test details saved:', {
+    console.log('Test details saved:', {
       id: testDetails._id,
       name: testDetails.name,
       email: testDetails.email,
@@ -172,7 +171,7 @@ app.post('/api/test-details', async (req, res) => {
         description: `Test submission from corporate website. Company: ${companyName}, Test Type: ${testType}`
       });
     } else {
-      console.log('⚠️  Zoho CRM not configured. Skipping Zoho integration.');
+      console.log('  Zoho CRM not configured. Skipping Zoho integration.');
     }
 
     res.status(201).json({
@@ -185,7 +184,7 @@ app.post('/api/test-details', async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('❌ Error saving test details:', error);
+    console.error(' Error saving test details:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to submit details',
@@ -222,12 +221,12 @@ app.post('/api/book-demo', async (req, res) => {
         description: `Demo booking request. Designation: ${designation}, Company Size: ${companySize}`
       });
 
-      console.log('✅ Demo booking saved to Zoho CRM');
+      console.log(' Demo booking saved to Zoho CRM');
     } else {
-      console.log('⚠️  Zoho CRM not configured. Demo booking logged only.');
+      console.log(' Zoho CRM not configured. Demo booking logged only.');
     }
 
-    console.log('✅ Demo booking received:', {
+    console.log('Demo booking received:', {
       name: fullName,
       company: companyName,
       email: workEmail,
@@ -239,7 +238,7 @@ app.post('/api/book-demo', async (req, res) => {
       message: 'Demo booking successful! Our team will contact you soon.'
     });
   } catch (error) {
-    console.error('❌ Error booking demo:', error);
+    console.error(' Error booking demo:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to book demo',
@@ -261,7 +260,7 @@ app.get('/api/test-details', async (req, res) => {
       data: testDetails
     });
   } catch (error) {
-    console.error('❌ Error fetching test details:', error);
+    console.error(' Error fetching test details:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to fetch test details',
@@ -275,12 +274,12 @@ const startServer = async () => {
   await connectDB();
   
   app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://localhost:${PORT}`);
-    console.log(`📝 API endpoints:`);
+    console.log(` Server is running on http://localhost:${PORT}`);
+    console.log(` API endpoints:`);
     console.log(`   - GET  http://localhost:${PORT}/api/health`);
     console.log(`   - POST http://localhost:${PORT}/api/test-details`);
     console.log(`   - GET  http://localhost:${PORT}/api/test-details`);
-    console.log(`\n🔧 Zoho CRM: ${process.env.ZOHO_CLIENT_ID ? '✅ Configured' : '⚠️  Not configured'}`);
+    console.log(`\n Zoho CRM: ${process.env.ZOHO_CLIENT_ID ? 'Configured' : ' Not configured'}`);
   });
 };
 

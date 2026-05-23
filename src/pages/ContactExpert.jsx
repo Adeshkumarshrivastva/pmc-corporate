@@ -40,7 +40,7 @@ export default function ContactExpert() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            margin: "0 auto 30px",
+            margin: "0 auto 50px",
             fontSize: "48px",
           }}
         >

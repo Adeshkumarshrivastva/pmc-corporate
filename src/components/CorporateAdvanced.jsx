@@ -75,69 +75,6 @@ function CorporateAdvanced() {
           <li>✔ Data-driven insights</li>
           <li>✔ Reduced legal and operational risk</li>
         </ul>
-
-        {/* Test Navigation Buttons */}
-        <div
-          style={{
-            display: "flex",
-            gap: "20px",
-            marginTop: "40px",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <button
-            onClick={() => navigate("/hidden-loss")}
-            style={{
-              padding: "16px 32px",
-              background: "linear-gradient(135deg, #1e3a8a, #2563eb)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "12px",
-              fontSize: "16px",
-              fontWeight: "bold",
-              cursor: "pointer",
-              boxShadow: "0 4px 12px rgba(30, 58, 138, 0.3)",
-              transition: "all 0.3s ease",
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 6px 16px rgba(30, 58, 138, 0.4)";
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 4px 12px rgba(30, 58, 138, 0.3)";
-            }}
-          >
-            📊 Hidden Loss Calculator
-          </button>
-
-          <button
-            onClick={() => navigate("/advanced-test")}
-            style={{
-              padding: "16px 32px",
-              background: "linear-gradient(135deg, #047857, #10b981)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "12px",
-              fontSize: "16px",
-              fontWeight: "bold",
-              cursor: "pointer",
-              boxShadow: "0 4px 12px rgba(4, 120, 87, 0.3)",
-              transition: "all 0.3s ease",
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 6px 16px rgba(4, 120, 87, 0.4)";
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 4px 12px rgba(4, 120, 87, 0.3)";
-            }}
-          >
-            📈 Advanced Productivity Test
-          </button>
-        </div>
       </div>
     </div>
   );
