@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/pmcimage.png";
+import reportPdf from "../assets/report.pdf";
 
 function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -30,6 +31,15 @@ function Header() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleDownloadReport = () => {
+    const link = document.createElement('a');
+    link.href = reportPdf;
+    link.download = 'PMC_Report.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const navItemStyle = {
     color: "#e0eeee",
@@ -198,9 +208,40 @@ function Header() {
           )}
         </div>
 
-        <Link to="/contact" style={navItemStyle}>
+        {/* CONTACT US - HIDDEN */}
+        {/* <Link to="/contact" style={navItemStyle}>
           Contact Us
-        </Link>
+        </Link> */}
+
+        {/* REPORT DOWNLOAD BUTTON */}
+        <button
+          onClick={handleDownloadReport}
+          style={{
+            background: "linear-gradient(135deg, #047857, #10b981)",
+            color: "#fff",
+            border: "none",
+            borderRadius: "6px",
+            padding: "10px 20px",
+            fontWeight: "600",
+            fontSize: "15px",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            transition: "all 0.3s ease",
+            whiteSpace: "nowrap",
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = "0 4px 12px rgba(4, 120, 87, 0.3)";
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "none";
+          }}
+        >
+          📄 Report
+        </button>
       </nav>
     </header>
   );
