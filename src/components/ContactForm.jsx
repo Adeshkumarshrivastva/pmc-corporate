@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { createZohoLead, isZohoConfigured } from "../utils/zoho";
+// ===== BACKEND INTEGRATION - COMMENTED FOR STATIC DEPLOYMENT =====
+// import { createZohoLead, isZohoConfigured } from "../utils/zoho";
+// ===== END BACKEND INTEGRATION =====
 
 function ContactForm() {
   const [formData, setFormData] = useState({
@@ -46,35 +48,56 @@ function ContactForm() {
     }
 
     try {
+      // ===== BACKEND INTEGRATION - COMMENTED FOR STATIC DEPLOYMENT =====
       // Check if Zoho is configured
-      if (isZohoConfigured()) {
-        // Submit to Zoho CRM
-        await createZohoLead({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          name: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          source: "Website Contact Form",
-        });
+      // if (isZohoConfigured()) {
+      //   // Submit to Zoho CRM
+      //   await createZohoLead({
+      //     firstName: formData.firstName,
+      //     lastName: formData.lastName,
+      //     name: `${formData.firstName} ${formData.lastName}`,
+      //     email: formData.email,
+      //     phone: formData.phone,
+      //     message: formData.message,
+      //     source: "Website Contact Form",
+      //   });
 
-        setStatus({
-          type: "success",
-          message: "Thank you! Your message has been sent successfully.",
-        });
+      //   setStatus({
+      //     type: "success",
+      //     message: "Thank you! Your message has been sent successfully.",
+      //   });
 
-        // Reset form
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          message: "",
-        });
-      } else {
-        // Fallback: Just show success (or implement email sending)
-        console.log("Form Data:", formData);
+      //   // Reset form
+      //   setFormData({
+      //     firstName: "",
+      //     lastName: "",
+      //     email: "",
+      //     phone: "",
+      //     message: "",
+      //   });
+      // } else {
+      //   // Fallback: Just show success (or implement email sending)
+      //   console.log("Form Data:", formData);
+      //   setStatus({
+      //     type: "success",
+      //     message: "Thank you! Your message has been received.",
+      //   });
+
+      //   // Reset form
+      //   setFormData({
+      //     firstName: "",
+      //     lastName: "",
+      //     email: "",
+      //     phone: "",
+      //     message: "",
+      //   });
+      // }
+      // ===== END BACKEND INTEGRATION =====
+
+      // STATIC VERSION - Direct success without backend
+      console.log("Form Data:", formData);
+      
+      setTimeout(() => {
         setStatus({
           type: "success",
           message: "Thank you! Your message has been received.",
@@ -88,7 +111,8 @@ function ContactForm() {
           phone: "",
           message: "",
         });
-      }
+      }, 500);
+
     } catch (error) {
       console.error("Form submission error:", error);
       setStatus({
@@ -121,8 +145,8 @@ function ContactForm() {
         Get in Touch with Us
       </h2>
 
-      {/* Zoho Status */}
-      {!isZohoConfigured() && (
+      {/* Zoho Status - COMMENTED FOR STATIC DEPLOYMENT */}
+      {/* {!isZohoConfigured() && (
         <div
           style={{
             maxWidth: "1000px",
@@ -137,7 +161,7 @@ function ContactForm() {
         >
           ⚠️ Zoho CRM: Not configured. Form data will be logged to console.
         </div>
-      )}
+      )} */}
 
       {/* Status Message */}
       {status.message && (

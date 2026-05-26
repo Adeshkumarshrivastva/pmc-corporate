@@ -24,23 +24,33 @@ function HiddenLossDetails() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3002/api/test-details", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, testType: 'hidden-loss' }),
-      });
+      // ===== BACKEND INTEGRATION - COMMENTED FOR STATIC DEPLOYMENT =====
+      // const response = await fetch("http://localhost:3002/api/test-details", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ ...formData, testType: 'hidden-loss' }),
+      // });
 
-      const data = await response.json();
+      // const data = await response.json();
 
-      if (data.success) {
-        localStorage.setItem("testUserDetails", JSON.stringify(formData));
+      // if (data.success) {
+      //   localStorage.setItem("testUserDetails", JSON.stringify(formData));
+      //   navigate("/hidden-loss/dialog");
+      // } else {
+      //   setError(data.message || "Failed to submit details");
+      // }
+      // ===== END BACKEND INTEGRATION =====
+
+      // STATIC VERSION - Direct navigation without backend
+      localStorage.setItem("testUserDetails", JSON.stringify(formData));
+      
+      setTimeout(() => {
         navigate("/hidden-loss/dialog");
-      } else {
-        setError(data.message || "Failed to submit details");
-      }
+      }, 500);
+
     } catch (err) {
       console.error("Error submitting details:", err);
-      setError("Failed to submit. Please check if server is running.");
+      setError("Failed to submit. Please try again.");
     } finally {
       setLoading(false);
     }

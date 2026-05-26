@@ -27,35 +27,52 @@ function AdvancedTestDetails() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3002/api/test-details", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formData, testType: 'advanced-test' }),
-      });
+      // ===== BACKEND INTEGRATION - COMMENTED FOR STATIC DEPLOYMENT =====
+      // const response = await fetch("http://localhost:3002/api/test-details", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ ...formData, testType: 'advanced-test' }),
+      // });
 
-      const data = await response.json();
+      // const data = await response.json();
 
-      if (data.success) {
-        // Save user details in localStorage for later use
-        localStorage.setItem("testUserDetails", JSON.stringify(formData));
+      // if (data.success) {
+      //   // Save user details in localStorage for later use
+      //   localStorage.setItem("testUserDetails", JSON.stringify(formData));
         
-        // Save a dummy productivity score for dialog page
-        const dummyScore = {
-          finalScore: 65,
-          totalScore: 52,
-        };
-        localStorage.setItem("productivityScore", JSON.stringify(dummyScore));
+      //   // Save a dummy productivity score for dialog page
+      //   const dummyScore = {
+      //     finalScore: 65,
+      //     totalScore: 52,
+      //   };
+      //   localStorage.setItem("productivityScore", JSON.stringify(dummyScore));
         
-        // Navigate to Dialog page (watch animation)
+      //   // Navigate to Dialog page (watch animation)
+      //   navigate("/advanced-test/dialog");
+      // } else {
+      //   setError(data.message || "Failed to submit details");
+      // }
+      // ===== END BACKEND INTEGRATION =====
+
+      // STATIC VERSION - Direct navigation without backend
+      localStorage.setItem("testUserDetails", JSON.stringify(formData));
+      
+      const dummyScore = {
+        finalScore: 65,
+        totalScore: 52,
+      };
+      localStorage.setItem("productivityScore", JSON.stringify(dummyScore));
+      
+      // Simulate loading
+      setTimeout(() => {
         navigate("/advanced-test/dialog");
-      } else {
-        setError(data.message || "Failed to submit details");
-      }
+      }, 500);
+
     } catch (err) {
       console.error("Error submitting details:", err);
-      setError("Failed to submit. Please check if server is running.");
+      setError("Failed to submit. Please try again.");
     } finally {
       setLoading(false);
     }

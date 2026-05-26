@@ -29,25 +29,34 @@ function BookDemo() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3002/api/book-demo", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // ===== BACKEND INTEGRATION - COMMENTED FOR STATIC DEPLOYMENT =====
+      // const response = await fetch("http://localhost:3002/api/book-demo", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(formData),
+      // });
 
-      const data = await response.json();
+      // const data = await response.json();
 
-      if (data.success) {
+      // if (data.success) {
+      //   alert("Demo booking successful! Our team will contact you soon.");
+      //   navigate("/");
+      // } else {
+      //   setError(data.message || "Failed to book demo");
+      // }
+      // ===== END BACKEND INTEGRATION =====
+
+      // STATIC VERSION - Direct success without backend
+      setTimeout(() => {
         alert("Demo booking successful! Our team will contact you soon.");
         navigate("/");
-      } else {
-        setError(data.message || "Failed to book demo");
-      }
+      }, 500);
+
     } catch (err) {
       console.error("Error booking demo:", err);
-      setError("Failed to submit. Please check if server is running.");
+      setError("Failed to submit. Please try again.");
     } finally {
       setLoading(false);
     }
